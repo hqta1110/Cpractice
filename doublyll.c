@@ -69,12 +69,39 @@ void insert(struct Node *p,int value, int pos)
         
     }
 }
+void delete(struct Node *p, int pos)
+{
+    int length = count(p);
+    struct Node *t;
+    if (pos<1 || pos > length)
+    {
+        printf("Index out of range\n");
+        return;
+    }
+    if (pos==1)
+    {
+        t = first;
+        first = first->next;
+        t->next = NULL;
+        free(t);
+        if (first)
+        {
+            first->prev = NULL;
+        }
+    }
+    else{
+        for (int i=1;i<pos;i++) p=p->next;
+        p->prev->next = p->next;
+        if (p->next) p->next->prev = p->prev;
+        free(p);
+}
+}
 int main()
 {
     int a[5]= {1,2,3,4,5};
     create(a,5);
     display(first);
-    insert(first, 10,4);
+    delete(first, 6);
     display(first);
     return 0;
 }
