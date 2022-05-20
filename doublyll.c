@@ -96,12 +96,25 @@ void delete(struct Node *p, int pos)
         free(p);
 }
 }
+void reverse(struct Node *p)
+{
+    struct Node* temp;
+    p = first;
+    while (p)
+    {
+        temp  = p->next;
+        p->next = p->prev;
+        p->prev = temp;
+        p=p->prev;
+        if (p!= NULL && p->next == NULL) first = p;
+    }
+}
 int main()
 {
     int a[5]= {1,2,3,4,5};
     create(a,5);
     display(first);
-    delete(first, 6);
+    reverse(first);
     display(first);
     return 0;
 }
