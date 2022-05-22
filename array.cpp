@@ -63,6 +63,21 @@ void del(struct Array *arr, int index)
         arr->length--;
     }
 }
+void delete_all(struct Array *a, int x) {
+    for(int i=0; i<a->length; i++)
+     {
+        if(a->A[i] == x) 
+        {
+            for(int j=i; j<a->length-1; j++)
+            {
+                a->A[j] = a->A[j+1];
+            }
+            a->length--;
+            i--;
+        }
+    }
+
+}
 void reverse(struct Array *arr)
 {
     int i=0, j=arr->length-1;
@@ -298,9 +313,9 @@ void select(struct Array *arr)
 
 int main()
 {
-    struct Array arr1 = {{21,15,7,18,3,4}, 10,6};
+    struct Array arr1 = {{10,15,10,10,3,4}, 10,6};
     struct Array arr2 = {{4,1,6}, 10,3};
-     select(&arr1);
+     delete_all(&arr1, 10);
      display(&arr1);
     
     return 0;

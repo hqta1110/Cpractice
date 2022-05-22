@@ -190,18 +190,7 @@ void reverse3(Node *q, Node *p)
         first = q;
     }
 }
-void reverse(struct Node *p)
-{
-    struct Node* temp;
-    p = first;
-    while (p)
-    {
-        temp  = p->next;
-        p->next = p->prev;
-        p->prev = temp;
-        if (p->next == NULL) first = p;
-    }
-}
+
 int main()
 {
     int a[] = {1,2,3,4,5,6};
