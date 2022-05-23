@@ -52,6 +52,7 @@ int pop(struct Stack *st)
 }
 int peek(struct Stack st, int pos)
 {
+    if (st.top == -1) return -99999;
     if (st.top - pos + 1 < 0 || st.top - pos + 1 > st.top) return -9999;
     else return st.s[st.top - pos +1];
 }
@@ -60,10 +61,8 @@ int main()
     struct Stack st;
     create(&st);
     push(&st, 5);
-    push(&st, 7);
-    push(&st, 9);
-    push(&st, 10);
-    push(&st, 11);
+    pop(&st);
+    pop(&st);
     display(st);
     printf("%d", peek(st, 0));
 
