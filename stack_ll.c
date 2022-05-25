@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 
 struct Node{
-    int data;
+    char data;
     struct Node *next;
 }*top = NULL;
 
-void push(int value)
+void push(char value)
 {
     struct Node *t = (struct Node *) malloc(sizeof(struct Node));
     if (t)
@@ -49,18 +49,28 @@ void display()
     struct Node *p = top;
     while (p!=NULL)
     {
-        printf("%d ", p->data);
+        printf("%c ", p->data);
         p = p->next;
     }
     printf("\n");
 }
+int isValid(char *exp)
+{
+    for (int i=0;i<strlen(exp);i++)
+    {
+        if (exp[i]=='(') push(exp[i]);
+        else if (exp[i]==')')
+        {
+            if (isEmpty()) return 0;
+            pop();
+        }
+    }
+    return isEmpty()?1:0;
+}
 int main()
 {
-    push(5);
-    push(6);
-    push(7);
-    pop();
-    display();
-    printf("%d", peek(2));
+    
+    char exp[100] = "((a+b))((c+d))";
+    printf("%d", isValid(exp));
     return 0;
 }
